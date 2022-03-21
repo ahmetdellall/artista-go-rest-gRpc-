@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+message Time{
+  string  value = 1;
+}
+
+
+message TimeUpdate {
+  Time time = 1;
+}
+message NewRequest {}
+
+message TimeStreamRequest {
+  int32 length = 1;
+}
+
+service TimeService {
+  rpc Now(NewRequest) returns (TimeUpdate);
+  rpc Stream(TimeStreamRequest) returns (stream TimeUpdate);
+}
